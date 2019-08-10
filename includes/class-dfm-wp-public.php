@@ -82,7 +82,9 @@ class DFM_WP_Public {
 	public function setup_dependencies() {
 		if ( is_admin() ) {
 			// Include dependencies
-			//require_once( $this->plugin_path . 'includes/class-something.php' );
+			require_once( $this->plugin_path . 'includes/class-add-admin-pages.php' );
+			$admin_pages = new ADD_ADMIN_PAGES();
+			$admin_pages->setup();
 		}
 	}
 

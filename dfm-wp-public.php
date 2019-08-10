@@ -32,7 +32,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-dfm-wp-public.php';
  * @since 1.0.0
  */
 function run_dfm_wp_public() {
-
 	$plugin = new DFM_WP_Public( __FILE__ );
 	$plugin->run();
 
