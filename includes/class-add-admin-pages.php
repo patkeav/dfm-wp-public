@@ -4,33 +4,33 @@ require_once( $this->plugin_path . 'includes/class-admin-page.php' );
 class ADD_ADMIN_PAGES {
 
   /**
-	 * An array of pages to add to the admin
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 * @var string
-	 */
-	public $pages;
+   * An array of pages to add to the admin
+   *
+   * @since 1.0.0
+   * @access public
+   * @var string
+   */
+  public $pages;
 
-	/**
-	 * The current page the user is on
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 * @var string
-	 */
+  /**
+   * The current page the user is on
+   *
+   * @since 1.0.0
+   * @access public
+   * @var string
+   */
   public $current_page;
   
   /**
-	 * Define the core functionality of the class.
-	 *
-	 * Build array of pages to add to the admin
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
-	public function __construct(  ) {
-		$this->pages = array(
+   * Define the core functionality of the class.
+   *
+   * Build array of pages to add to the admin
+   *
+   * @since 1.0.0
+   * @access public
+   */
+  public function __construct(  ) {
+    $this->pages = array(
       'sports' => new ADMIN_PAGE( array(
         'name' => 'Sports',
         'title' => 'Sports Content',
@@ -92,7 +92,7 @@ class ADD_ADMIN_PAGES {
    * @access public
    * @return void
    */
-	public function setup() {
+  public function setup() {
     add_action('admin_menu', array ($this, 'setup_menu'), 10, 2);
     add_action('admin_enqueue_scripts', array ($this, 'enqueue'));
   }
