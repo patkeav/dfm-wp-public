@@ -28,7 +28,7 @@ class ADMIN_PAGE {
 	 * @var string
 	 */
 	public $url;
-	
+
 	/**
 	 * The page category
 	 *
@@ -46,7 +46,7 @@ class ADMIN_PAGE {
 	 * @var string
 	 */
 	public $limit;
-	
+
 	/**
 	 * The page zero state text
 	 *
@@ -55,8 +55,8 @@ class ADMIN_PAGE {
 	 * @var string
 	 */
 	public $zero_state;
-  
-  /**
+
+	/**
 	 * Sets up the field for this class
 	 *
 	 * $opts = array of options to set
@@ -65,11 +65,11 @@ class ADMIN_PAGE {
 	 * @access public
 	 */
 	public function __construct( $opts ) {
-		$this->name = $opts['name'];
-		$this->title = $opts['title'];
-		$this->url = $opts['url'];
-		$this->category = $opts['category'];
-		$this->limit = $opts['limit'];
-		$this->zero_state = $opts['zero_state'];
+	$this->name = $opts['name'];
+	$this->title = $opts['title'];
+	$this->url = $opts['url'];
+	$this->category = $opts['category'];
+	$this->limit = $opts['limit'];
+	$this->zero_state = $opts['zero_state'];
 	}
 }
