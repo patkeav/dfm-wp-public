@@ -16,7 +16,7 @@
           <th scope="col" id="title" class="manage-column column-title column-primary sortable desc"><a href="http://localhost:8888/dfm/wp-admin/edit.php?orderby=title&amp;order=asc"><span>Title</span><span class="sorting-indicator"></span></a></th>
           <th scope="col" id="author" class="manage-column column-author">Author</th>
           <th scope="col" id="categories" class="manage-column column-categories">Categories</th>
-          <th scope="col" id="tags" class="manage-column column-tags">Tags</th>
+          <th scope="col" id="tags" class="manage-column column-tags"></th>
         </tr>
       </thead>
       <tbody id="the-list">
@@ -32,15 +32,14 @@
               </strong>
             </td>
             <td class="author column-author">
-              <?php the_author_link(); ?>
+              <a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>"><?php the_author(); ?></a>
             </td>
             <td class="categories column-categories">
               <?php foreach ($categories as $c) : ?>
-                <a href="<?php echo get_category_link($c->cat_ID); ?>">
-                  <?php echo $c->name; ?>
-                </a>
-                <?php if ($i > 0) echo ','; ?>
                 <?php $i++; ?>
+                <a href="<?php echo get_category_link($c->cat_ID); ?>">
+                  <?php echo $c->name; ?><?php if (count($categories) > 1 && $i !== count($categories)) echo ','; ?>
+                </a>
               <?php endforeach; ?>
             </td>
             <td></td>
