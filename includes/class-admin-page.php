@@ -3,7 +3,7 @@
 class ADMIN_PAGE {
 
   /**
-	 * The string used to uniquely identify this plugin.
+	 * The name of the page
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -12,7 +12,7 @@ class ADMIN_PAGE {
 	public $name;
 
 	/**
-	 * The plugin_url
+	 * The page title
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -21,7 +21,7 @@ class ADMIN_PAGE {
 	public $title;
 
 	/**
-	 * The plugin_url
+	 * The page url
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -30,7 +30,7 @@ class ADMIN_PAGE {
 	public $url;
 	
 	/**
-	 * The plugin_url
+	 * The page category
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -39,7 +39,7 @@ class ADMIN_PAGE {
 	public $category;
 	
 	/**
-	 * The plugin_url
+	 * The page zero state text
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -48,9 +48,9 @@ class ADMIN_PAGE {
   public $zero_state;
   
   /**
-	 * Define the core functionality of the plugin.
+	 * Sets up the field for this class
 	 *
-	 * Set the plugin name, url, path and plugin version that can be used throughout the plugin.
+	 * $opts = array of options to set
 	 *
 	 * @since 1.0.0
 	 * @access public

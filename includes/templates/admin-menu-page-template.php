@@ -1,4 +1,11 @@
 
+<?php 
+/** 
+ * Template file for displaying the individual page the user is on
+ *
+*/
+?>
+
 <div class="admin-page">
   <h1><?php echo $currentPage->title; ?></h1>
 
@@ -36,9 +43,7 @@
                 <?php $i++; ?>
               <?php endforeach; ?>
             </td>
-            <td class="tags column-tags">
-            
-            </td>
+            <td></td>
           </tr>
         <?php endwhile;?> 
       </tbody>

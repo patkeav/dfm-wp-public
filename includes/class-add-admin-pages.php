@@ -4,7 +4,7 @@ require_once( $this->plugin_path . 'includes/class-admin-page.php' );
 class ADD_ADMIN_PAGES {
 
   /**
-	 * The string used to uniquely identify this plugin.
+	 * An array of pages to add to the admin
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -13,7 +13,7 @@ class ADD_ADMIN_PAGES {
 	public $pages;
 
 	/**
-	 * The plugin_url
+	 * The current page the user is on
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -22,9 +22,9 @@ class ADD_ADMIN_PAGES {
   public $current_page;
   
   /**
-	 * Define the core functionality of the plugin.
+	 * Define the core functionality of the class.
 	 *
-	 * Set the plugin name, url, path and plugin version that can be used throughout the plugin.
+	 * Build array of pages to add to the admin
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -69,6 +69,12 @@ class ADD_ADMIN_PAGES {
     );
   }
 
+  /**
+   * Enqueues scripts to be used by the plugin
+   *
+   * @since 1.0.0
+   * @access public
+   */
   public function enqueue() {
     wp_register_style( 'dfm-css', plugins_url('/css/dfm.css', __DIR__), false, '1.0');
     wp_enqueue_style( 'dfm-css' );
@@ -78,25 +84,21 @@ class ADD_ADMIN_PAGES {
 	 * Register the actions and filters
 	 *
 	 * @since 1.0.0
-	 * @access public
-	 * @return void
+   * @access public
 	 */
 	public function setup() {
     add_action('admin_menu', array ($this, 'setup_menu'), 10, 2);
     add_action('admin_enqueue_scripts', array ($this, 'enqueue'));
   }
-
   
-
-  private function getCurrent() {
-    return $this->current_page;
-  }
-
-  private function setCurrent($page) {
-    $this->current_page = $this->pages[$page];
-  }
-  
-  function setup_menu() {
+  /**
+   * Adds pages to the admin navigation menu
+   *
+   * @since 1.0.0
+   * @access public
+   * @return void
+   */
+  public function setup_menu() {
     $i = 1;
     foreach ($this->pages as $page) {
       add_menu_page( 
@@ -111,6 +113,15 @@ class ADD_ADMIN_PAGES {
     }
   }
 
+  /**
+   * Callback function used by add_menu_page
+   * 
+   * Sets the current page, includes template file to display
+   *
+   * @since 1.0.0
+   * @access public
+   * @return ADMIN_PAGE
+   */
   public function display_stuff() {
     $page = get_current_screen()->parent_base;
     $this->setCurrent($page);
@@ -119,6 +130,35 @@ class ADD_ADMIN_PAGES {
     include 'templates/admin-menu-page-template.php';
   }
 
+  /**
+   * Gets current page user is on
+   *
+   * @since 1.0.0
+   * @access private
+   * @return ADMIN_PAGE
+   */
+  private function getCurrent() {
+    return $this->current_page;
+  }
+
+  /**
+   * Sets current page user is on
+   *
+   * @since 1.0.0
+   * @access private
+   * @return void
+   */
+  private function setCurrent($page) {
+    $this->current_page = $this->pages[$page];
+  } 
+
+  /**
+   * Helper function for getting posts associated with the current page category
+   *
+   * @since 1.0.0
+   * @access private
+   * @return WP_QUERY
+   */
   private function getPosts($page) {
     $args = array(
       'post_type' => 'post',
