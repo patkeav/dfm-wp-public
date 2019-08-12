@@ -54,7 +54,7 @@ class ADMIN_PAGE {
 	 * @access public
 	 * @var string
 	 */
-  public $zero_state;
+	public $zero_state;
   
   /**
 	 * Sets up the field for this class

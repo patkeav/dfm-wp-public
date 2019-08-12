@@ -86,11 +86,12 @@ class ADD_ADMIN_PAGES {
   }
   
   /**
-	 * Register the actions and filters
-	 *
-	 * @since 1.0.0
+   * Register actions and filters
+   *
+   * @since 1.0.0
    * @access public
-	 */
+   * @return void
+   */
 	public function setup() {
     add_action('admin_menu', array ($this, 'setup_menu'), 10, 2);
     add_action('admin_enqueue_scripts', array ($this, 'enqueue'));
