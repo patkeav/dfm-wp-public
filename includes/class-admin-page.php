@@ -2,7 +2,7 @@
 
 class ADMIN_PAGE {
 
-  /**
+	/**
 	 * The name of the page
 	 *
 	 * @since 1.0.0
@@ -65,11 +65,11 @@ class ADMIN_PAGE {
 	 * @access public
 	 */
 	public function __construct( $opts ) {
-	$this->name = $opts['name'];
-	$this->title = $opts['title'];
-	$this->url = $opts['url'];
-	$this->category = $opts['category'];
-	$this->limit = $opts['limit'];
-	$this->zero_state = $opts['zero_state'];
+		$this->name = $opts['name'];
+		$this->title = $opts['title'];
+		$this->url = $opts['url'];
+		$this->category = $opts['category'];
+		$this->limit = $opts['limit'];
+		$this->zero_state = $opts['zero_state'];
 	}
 }
