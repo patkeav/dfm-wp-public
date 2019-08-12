@@ -63,10 +63,15 @@ class ADD_ADMIN_PAGES {
         'name' => 'World and News',
         'title' => 'World and News Content',
         'url' => 'world-and-news',
-        'category' => 'world_and_news',
+        'category' => 'world-and-news',
         'zero_state' => 'There are no World and News posts. Check back later'
       ))
-      );
+    );
+  }
+
+  public function enqueue() {
+    wp_register_style( 'dfm-css', plugins_url('/css/dfm.css', __DIR__), false, '1.0');
+    wp_enqueue_style( 'dfm-css' );
   }
   
   /**
@@ -77,8 +82,11 @@ class ADD_ADMIN_PAGES {
 	 * @return void
 	 */
 	public function setup() {
-    add_action('admin_menu', array ($this, 'test_plugin_setup_menu'), 10, 2);
+    add_action('admin_menu', array ($this, 'setup_menu'), 10, 2);
+    add_action('admin_enqueue_scripts', array ($this, 'enqueue'));
   }
+
+  
 
   private function getCurrent() {
     return $this->current_page;
@@ -88,7 +96,7 @@ class ADD_ADMIN_PAGES {
     $this->current_page = $this->pages[$page];
   }
   
-  function test_plugin_setup_menu() {
+  function setup_menu() {
     $i = 1;
     foreach ($this->pages as $page) {
       add_menu_page( 
@@ -100,12 +108,28 @@ class ADD_ADMIN_PAGES {
         'dashicons-media-code',
         $i);
       $i++;
-    } 
+    }
   }
 
   public function display_stuff() {
     $page = get_current_screen()->parent_base;
     $this->setCurrent($page);
+    $currentPage = $this->getCurrent();
+    $query = $this->getPosts($this->getCurrent()->category);
     include 'templates/admin-menu-page-template.php';
+  }
+
+  private function getPosts($page) {
+    $args = array(
+      'post_type' => 'post',
+      'posts_per_page' => 25,
+      'tax_query' => array(
+          array(
+              'taxonomy' => 'category',
+              'field' => 'slug',
+              'terms' => array( $page ) )
+          )
+    );
+    return new WP_Query($args);
   }
 }
