@@ -36,6 +36,7 @@ class ADD_ADMIN_PAGES {
         'title' => 'Sports Content',
         'url' => 'sports',
         'category' => 'sports',
+        'limit' => 25,
         'zero_state' => 'There are no Sports posts. Check back later'
       )),
       'animals' => new ADMIN_PAGE( array(
@@ -43,6 +44,7 @@ class ADD_ADMIN_PAGES {
         'title' => 'Animals Content',
         'url' => 'animals',
         'category' => 'animals',
+        'limit' => 10,
         'zero_state' => 'There are no Animals posts. Check back later'
       )),
       'business' => new ADMIN_PAGE( array(
@@ -50,6 +52,7 @@ class ADD_ADMIN_PAGES {
         'title' => 'Business Content',
         'url' => 'business',
         'category' => 'business',
+        'limit' => 12,
         'zero_state' => 'There are no Business posts. Check back later'
       )),
       'entertainment' => new ADMIN_PAGE( array(
@@ -57,6 +60,7 @@ class ADD_ADMIN_PAGES {
         'title' => 'Entertainment Content',
         'url' => 'entertainment',
         'category' => 'entertainment',
+        'limit' => 50,
         'zero_state' => 'There are no Entertainment posts. Check back later'
       )),
       'world-and-news' => new ADMIN_PAGE( array(
@@ -64,6 +68,7 @@ class ADD_ADMIN_PAGES {
         'title' => 'World and News Content',
         'url' => 'world-and-news',
         'category' => 'world-and-news',
+        'limit' => 100,
         'zero_state' => 'There are no World and News posts. Check back later'
       ))
     );
@@ -126,7 +131,7 @@ class ADD_ADMIN_PAGES {
     $page = get_current_screen()->parent_base;
     $this->setCurrent($page);
     $currentPage = $this->getCurrent();
-    $query = $this->getPosts($this->getCurrent()->category);
+    $query = $this->getPosts($this->getCurrent());
     include 'templates/admin-menu-page-template.php';
   }
 
@@ -162,12 +167,12 @@ class ADD_ADMIN_PAGES {
   private function getPosts($page) {
     $args = array(
       'post_type' => 'post',
-      'posts_per_page' => 25,
+      'posts_per_page' => $page->limit,
       'tax_query' => array(
           array(
               'taxonomy' => 'category',
               'field' => 'slug',
-              'terms' => array( $page ) )
+              'terms' => array( $page->category ) )
           )
     );
     return new WP_Query($args);

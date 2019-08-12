@@ -37,6 +37,15 @@ class ADMIN_PAGE {
 	 * @var string
 	 */
 	public $category;
+
+	/**
+	 * The number of posts to display
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 * @var string
+	 */
+	public $limit;
 	
 	/**
 	 * The page zero state text
@@ -60,6 +69,7 @@ class ADMIN_PAGE {
 		$this->title = $opts['title'];
 		$this->url = $opts['url'];
 		$this->category = $opts['category'];
+		$this->limit = $opts['limit'];
 		$this->zero_state = $opts['zero_state'];
 	}
 }
