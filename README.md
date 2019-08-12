@@ -11,5 +11,3 @@ New functionality includes the following files:
 4. `dfm.css`
 
 Let me know if you have any questions or run into issues, and thanks again!
-
-- Patrick
